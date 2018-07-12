@@ -1,0 +1,118 @@
+.delayone {
+  -moz-animation-delay: .2s;
+  -webkit-animation-delay: .2s;
+}
+
+.delaytwo {
+  -moz-animation-delay: .4s;
+  -webkit-animation-delay: .4s;
+}
+
+.delaythree {
+  -moz-animation-delay: .6s;
+  -webkit-animation-delay: .6s;
+}
+
+.delayfour {
+  -moz-animation-delay: .8s;
+  -webkit-animation-delay: .8s;
+}
+
+.delayfive {
+  -moz-animation-delay: 1s;
+  -webkit-animation-delay: 1s;
+}
+
+.delaysix {
+  -moz-animation-delay: 1.4s;
+  -webkit-animation-delay: 1.4s;
+}
+
+.icon {
+  margin: auto;
+  position: absolute;
+  width: 100%;
+  margin-top: 10%;
+  display: block;
+  color: #fa6233;
+  font-size: 3em;
+  -webkit-transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  -moz-transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+#circ {
+  max-width: 100%;
+  min-height: 200px;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  float: none;
+}
+#circ ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 80px;
+  width: 100%;
+}
+#circ ul li {
+  display: inline-block;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: 0 20px 20px 20px;
+  text-align: center;
+  background: #fff;
+  border: solid 8px transparent;
+  position: relative;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+#circ ul li:hover {
+  border: solid 8px #f29843;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 1200px) {
+  h1 {
+    font-size: 4em;
+  }
+
+  .icon {
+    position: relative;
+    margin-top: 10%;
+    color: #fa6233;
+    font-size: 2em;
+    -webkit-transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    -moz-transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  #circ ul li {
+    width: 80px;
+    height: 80px;
+    margin: 0 5px 5px 5px;
+  }
+  #circ ul li:hover .icon {
+    font-size: 2.5em;
+  }
+}
+@media only screen and (max-width: 690px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  #circ ul li {
+    border-radius: 0;
+    border: none;
+    margin: 0;
+  }
+  #circ ul li:hover {
+    border: none;
+  }
+}

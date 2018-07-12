@@ -1,0 +1,47 @@
+.footer{
+  height: 400px;
+  padding-top: 100px;
+  padding-top: 100px;
+}
+
+.row{
+  margin:auto;
+}
+span, p {
+  color: white;
+}
+.Head .GPS{
+  font-size: 50px;
+  font-family: 'Montserrat', serif;
+}
+
+.Head .VTS{
+  font-size: 40px;
+}
+.paragraph p{
+  font-size: 18px;
+}
+
+.btn-buy{
+  background-color: #34b0f8;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Montserrat', serif;
+  font-weight: 700;
+  font-style: normal;
+  border-color: transparent;
+  padding: 19px 63px;
+  border-radius: 30px;
+  line-height: 19.2px;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.copy-right{
+  margin: 20px 0px 20px 0px;
+
+}
