@@ -1,5 +1,6 @@
 .block1{
-  padding-top: 100px;
+
+  padding-top: 200px;
   padding-bottom: 300px;
   background: linear-gradient(to bottom,rgba(250,98,51,1) 30%, rgba(250,98,51,0.8) 50%,rgba(255,255,255,0) 100%),url("img/background.jpeg") no-repeat top center scroll ;
   background-size: cover ;
