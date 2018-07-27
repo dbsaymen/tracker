@@ -1,0 +1,34 @@
+<div class="side-bar" [ngClass]="{'showSideBar':showBar}">
+
+  <div class="top">
+    <div class="user">
+      <div class="img-container">
+        <img src="http://placehold.it/50/30a5ff/fff" class="img-responsive" alt="">
+      </div>
+      <div class="text-container">
+        <div class="profile-usertitle-name">
+          Username
+        </div>
+        <div class="profile-usertitle-status">
+          <span class="indicator label-success"></span>
+          "Online"
+        </div>
+      </div>
+    </div>
+    <form class="search" action="#">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+    </form>
+  </div>
+  <div class="menu">
+    <ul>
+      <li class="home"><a [routerLink]="['/home']">HOME</a></li>
+      <li class="about"><a [routerLink]="['/map']" >ABOUT</a></li>
+      <li class="service"><a [routerLink]="['/service']">SERVICES</a></li>
+      <li class="gallery"><a [routerLink]="['/Gallery']">GALLERY</a></li>
+      <li class="contacts"><a [routerLink]="['/contacts']">CONTACTS</a></li>
+      <li class="login"><a [routerLink]="['/Login']">Login</a></li>
+    </ul>
+  </div>
+</div>

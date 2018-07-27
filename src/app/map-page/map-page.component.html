@@ -1,0 +1,6 @@
+<div class="mapDiv">
+  <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
+    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="iconUrl" [markerDraggable]="true"></agm-marker>
+  </agm-map>
+</div>
+

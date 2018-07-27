@@ -1,0 +1,132 @@
+.side-bar{
+  position: fixed;
+  width:40%;
+  height:100%;
+  background-color:#F9FAFB;
+  padding-top: 80px;
+  z-index: 1100;
+  transform: translateX(-103%);
+  box-shadow:0 0 2rem rgba(250,98,51,0.6);
+  transition: transform 500ms linear;
+}
+.showSideBar{
+  transform:none;
+}
+.img-container{
+  box-sizing: border-box;
+}
+.top{
+  display: block;
+  box-sizing: border-box;
+  background-color: #F9FAFB;
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecf2;
+}
+.top img{
+  float: left;
+  margin: 10px 0px 0px 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 9999px !important;
+}
+.img-container{
+  display: inline-block;
+}
+.text-container{
+  display: inline-block;
+  padding-left: 10px;
+}
+.profile-usertitle-name{
+  font-size: 20px;
+  margin-bottom: 0px;
+  text-align: left;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.indicator{
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border-radius: 9999px;
+  margin-right: 5px;
+  background-color: #8ad919;
+}
+.search{
+  width: 80%;
+  margin-top: 45px;
+  padding-left: 20px;
+}
+
+.menu ul{
+  list-style: none;
+  margin-top: 80px;
+  padding-left: 0px;
+}
+
+ul li {
+  height: 75px;
+
+  padding-left: 20px;
+}
+ul li a{
+  text-decoration: none;
+  color: #929292;
+  font-size: 37px;
+  margin: 20px;
+
+}
+ul li:hover{
+  font-size: 39px;
+  color: #665e5e;
+  background-color: #f29843;
+
+}
+
+.home::before{
+  content: '';
+  display: inline-block;
+  background-image: url('../../../assets/icones/home.svg');
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.about::before{
+  content: '';
+  display: inline-block;
+  background-image: url('../../../assets/icones/about.svg');
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.service::before{
+  content: '';
+  display: inline-block;
+  background-image: url('../../../assets/icones/services.svg');
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.gallery::before{
+  content: '';
+  display: inline-block;
+  background-image: url('../../../assets/icones/gallery.svg');
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.contacts::before{
+  content: '';
+  display: inline-block;
+  background-image: url('../../../assets/icones/contact.svg');
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+.login::before{
+  content: '';
+  display: inline-block;
+  background-image: url('../../../assets/icones/login.svg');
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+}
+

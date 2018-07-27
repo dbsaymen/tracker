@@ -1,0 +1,11 @@
+.mapDiv{
+  padding-top: 100px;
+  background-color: #929292;
+  padding-bottom: 25px;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+agm-map {
+  height: 700px;
+
+}
