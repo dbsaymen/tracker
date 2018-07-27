@@ -17,7 +17,7 @@ import { MainPageComponent } from './home-page/main-page/main-page.component'
 import { AboutPageComponent } from './about-page/main-page/main-page.component';
 import { SideNavbarComponent } from './shared/side-navbar/side-navbar.component';
 import { MapPageComponent } from './map-page/map-page.component'
-
+import { AgmDirectionModule } from 'agm-direction'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -53,7 +53,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAe-oIvaq7Bm6Z5YtnYH7c5Fm4aRdYN3cc'
-    })
+    }),
+    AgmDirectionModule
 
   ],
   providers: [

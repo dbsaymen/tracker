@@ -1,6 +1,9 @@
 <div class="mapDiv">
-  <agm-map [latitude]="lat" [longitude]="lng" (mapClick)="onChoseLocation($event)">
-    <agm-marker [latitude]="lat" [longitude]="lng" [iconUrl]="iconUrl" [markerDraggable]="true"></agm-marker>
+  <agm-map [latitude]="latD" [longitude]="lngD" [zoom]="16" (mapClick)="onChoseLocation($event)">
+    <agm-polyline [strokeColor]="'#2196f3'" >
+      <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat" [longitude]="point.lng" ></agm-polyline-point>
+    </agm-polyline>
   </agm-map>
 </div>
+
 
