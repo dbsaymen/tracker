@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {RoadCreatorService} from '../services/road-creator.service';
+import * as Stomp from 'stompjs';
+import $ from 'jquery';
+
 
 @Component({
   selector: 'app-map-page',
@@ -8,32 +11,52 @@ import {RoadCreatorService} from '../services/road-creator.service';
 })
 export class MapPageComponent implements OnInit {
 
-  latD: number = 51.678418;
-  lngD: number = 7.809007;
+  latD: number = 36.45102486;
+  lngD: number = 10.73452199;
   points=[];
+
+
 
   iconUrl="assets/icones/circle.png";
 
 
   constructor(private roadCreator: RoadCreatorService) {
-    this.points=this.roadCreator.points;
+    //this.points=this.roadCreator.points;
   }
 
   ngOnInit() {
-      console.log(this.points);
-      for(let point of this.points){
-        console.log(point.lat);
+    this.connect();
+  }
+
+  name: string;
+  ws: any;
+
+  connect() {
+    let socket = new WebSocket("ws://localhost:8080/vehicle");
+    this.ws = Stomp.over(socket);
+    let that = this;
+    this.ws.connect({}, function(frame) {
+      that.ws.subscribe("/topic/reply", function(message) {
+        var splitted = message.body.split(":");
+        var coords = [+splitted[0],+splitted[1]]
+        that.points.push(coords);
+      });
+    }, function(error) {
+      console.log("STOMP error " + error);
+    });
+  }
+
+  disconnect() {
+    if (this.ws != null) {
+      this.ws.ws.close();
     }
+    console.log("Disconnected");
   }
-
-
-
-
-  onChoseLocation(event){
-    this.latD=event.coords.lat;
-    this.lngD=event.coords.lng;
+  sendMsg() {
+    this.ws.send("/app/message", {}, "GetCars");
   }
-
-
+  clear(){
+    this.points=[];
+  }
 
 }

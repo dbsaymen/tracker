@@ -17,26 +17,41 @@
           <a  class="nav-link" [routerLink]="['/home']" >HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/about']" >ABOUT</a>
+          <a class="nav-link" [routerLink]="['/map']" >ABOUT</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/services']" >SERVICES</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/gallery']">GALLERY</a>
+          <a class="nav-link" [routerLink]="['/Gallery']">GALLERY</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/contact']" >CONTACTS</a>
+          <a class="nav-link" [routerLink]="['/contacts']" >CONTACTS</a>
         </li>
       </ul>
     </div>
-    <div class="logBtn" *ngIf="topMenuActive">
+    <div (click)="auth.logout()"  class="logBtn" *ngIf="topMenuActive && auth.isAuthenticated()">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button class="btn"><i class="fas fa-lock"></i><span>Dashbord</span></button>
+        </li>
+      </ul>
+    </div>
+    <div (click)="auth.login()"  class="logBtn" *ngIf="topMenuActive && !auth.isAuthenticated()">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <button class="btn"><i class="fas fa-lock"></i><span>Login</span></button>
         </li>
       </ul>
     </div>
+    <div (click)="auth.logout()"  class="logBtn" *ngIf="topMenuActive && auth.isAuthenticated()">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <button class="btn"><i class="fas fa-lock"></i><span>LogOut</span></button>
+        </li>
+      </ul>
+    </div>
+
     <div *ngIf="!topMenuActive" class="side_navbar" (click)="toggleSideNavbar()">
       <svg class="logo__icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="124px" height="124px" viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;" xml:space="preserve">

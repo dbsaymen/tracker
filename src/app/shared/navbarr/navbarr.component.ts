@@ -1,4 +1,5 @@
 import { Component, OnInit,HostListener } from '@angular/core';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbarr',
@@ -9,7 +10,9 @@ export class NavbarrComponent implements OnInit {
   innerWidth=window.innerWidth;
   sideMenuActive=false;
   topMenuActive=false;
-  constructor() { }
+  constructor(public auth: AuthService) {
+    auth.handleAuthentication();
+  }
 
   ngOnInit() {
     this.onResize();
@@ -24,7 +27,7 @@ export class NavbarrComponent implements OnInit {
     this.sideMenuActive=!this.sideMenuActive;
   }
   autoToggleNavbar(){
-    if(this.innerWidth<4000){
+    if(this.innerWidth<1005){
       this.topMenuActive=false;
     }
     else{
