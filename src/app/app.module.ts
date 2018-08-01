@@ -27,14 +27,29 @@ import {AuthService } from './services/auth.service';
 import {AuthGuard} from './auth.guard';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 
+import { MainDashboardComponent } from './DashBoard/main-dashboard/main-dashboard.component';
+import { MainDashboardNavbarComponent } from './DashBoard/main-dashboard-navbar/main-dashboard-navbar.component';
+import { MainDashboardAddComponent } from './DashBoard/main-dashboard-add/main-dashboard-add.component';
+import { MainDashboardDeleteComponent } from './DashBoard/main-dashboard-delete/main-dashboard-delete.component';
+import { MainDashboardbrowseComponent } from './DashBoard/main-dashboardbrowse/main-dashboardbrowse.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainPageComponent},
   { path: 'about', component: AboutPageComponent},
   { path: 'services', component: AboutPageComponent},
   { path: '403', component: NotfoundComponent},
-  { path: 'map', component: MapPageComponent, canActivate:[AuthGuard]},
-  { path: '**', redirectTo: '', pathMatch: 'full'}
+  { path: 'dashboard', component: MainDashboardNavbarComponent, canActivate:[AuthGuard],
+    children: [
+      { path: '', redirectTo: './map', pathMatch: 'full' },
+      {path: 'map', component: MapPageComponent},
+      {path: 'add', component: MainDashboardAddComponent},
+      {path: 'del', component: MainDashboardDeleteComponent},
+      {path: 'all', component: MainDashboardbrowseComponent},
+    ]
+
+  },
+  { path: '**', redirectTo: 'home', pathMatch: 'full'}
   ];
 
 
@@ -57,6 +72,11 @@ const routes: Routes = [
     MainLoginComponent,
     LoginComponent,
     NotfoundComponent,
+    MainDashboardComponent,
+    MainDashboardNavbarComponent,
+    MainDashboardAddComponent,
+    MainDashboardDeleteComponent,
+    MainDashboardbrowseComponent,
   ],
   imports: [
     BrowserModule,

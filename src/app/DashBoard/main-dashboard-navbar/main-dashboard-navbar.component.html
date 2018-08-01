@@ -1,0 +1,22 @@
+<div class="mainDashboardNavbar">
+  <div class="skip">
+
+  </div>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['./map']">main</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./add']">Add New Truck</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./del']">Delete Truck</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['./all']">Browse</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<router-outlet></router-outlet>

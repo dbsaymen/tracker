@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {GetAllTrucksService} from '../services/get-all-trucks.service';
 import {RoadCreatorService} from '../services/road-creator.service';
+
+
 import * as Stomp from 'stompjs';
-import $ from 'jquery';
+import {truck} from '../Models/truck.model';
 
 
 @Component({
@@ -14,18 +17,18 @@ export class MapPageComponent implements OnInit {
   latD: number = 36.45102486;
   lngD: number = 10.73452199;
   points=[];
-
+  trucks: truck[];
 
 
   iconUrl="assets/icones/circle.png";
 
 
-  constructor(private roadCreator: RoadCreatorService) {
-    //this.points=this.roadCreator.points;
+  constructor(private roadCreator: RoadCreatorService,private getAllTr:GetAllTrucksService) {
   }
 
   ngOnInit() {
     this.connect();
+    this.getAllTr.getAllTrucks().subscribe( data => this.trucks=data);
   }
 
   name: string;
@@ -57,6 +60,11 @@ export class MapPageComponent implements OnInit {
   }
   clear(){
     this.points=[];
+  }
+
+
+  getallTrucks(){
+    console.log(this.trucks);
   }
 
 }

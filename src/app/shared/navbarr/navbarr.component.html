@@ -17,7 +17,7 @@
           <a  class="nav-link" [routerLink]="['/home']" >HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/map']" >ABOUT</a>
+          <a class="nav-link" [routerLink]="['/about']" >ABOUT</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/services']" >SERVICES</a>
@@ -30,10 +30,10 @@
         </li>
       </ul>
     </div>
-    <div (click)="auth.logout()"  class="logBtn" *ngIf="topMenuActive && auth.isAuthenticated()">
+    <div [routerLink]="['/dashboard']"  class="logBtn" *ngIf="topMenuActive && auth.isAuthenticated()">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <button class="btn"><i class="fas fa-lock"></i><span>Dashbord</span></button>
+          <button class="btn"><i class="fas fa-tachometer-alt"></i><span>Dashbord</span></button>
         </li>
       </ul>
     </div>

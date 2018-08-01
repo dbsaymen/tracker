@@ -1,7 +1,7 @@
 <div class="main">
-  <div class="fixTop"></div>
-  <div class="row">
-    <div class="col-sm-10">
+  <div class="container">
+    <div class="row">
+    <div class="col-sm-9">
       <div class="mapDiv">
         <agm-map [latitude]="latD" [longitude]="lngD" [zoom]="17">
           <agm-polyline [strokeColor]="'#2196f3'" >
@@ -10,9 +10,17 @@
         </agm-map>
       </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3">
+      <div class="form-group ">
+        <select id="inputState" class="form-control">
+          <option selected>choose a truck:</option>
+          <option *ngFor="let truck of trucks">{{truck["carSerialNumber"]}} , {{truck["model"]}} , {{truck["color"]}}</option>
+        </select>
+      </div>
       <button class="btn btn-success contorls"(click)="sendMsg()">Track Car</button><br/>
-      <button class="btn btn-danger contorls"(click)="clear()">clear</button>
+      <button class="btn btn-danger contorls"(click)="clear()">clear</button><br>
+      <button class="btn btn-dark contorls"(click)="getallTrucks()">getAll</button>
     </div>
+  </div>
   </div>
 </div>

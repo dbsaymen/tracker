@@ -13,7 +13,7 @@ export class AuthService {
     domain: 'trackingapi.auth0.com',
     responseType: 'token id_token',
     audience: 'https://trackingapi.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/map',
+    redirectUri: 'http://localhost:4200/dashboard',
     scope: 'openid profile'
   });
 
