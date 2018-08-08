@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService} from '../../services/user.service';
 import {AuthService} from '../../services/auth.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,11 +9,23 @@ import {AuthService} from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   UserDetails;
   dataSource;
-  constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+  constructor(public router: Router,public auth: AuthService) {
   }
-
+  mode:number=0;
   ngOnInit() {
   }
+  onLogin(user){
+    this.auth.login(user).subscribe(
+      resp=>{
+        let jwtToken=resp.headers.get('Authorization');
+        this.auth.saveToken(jwtToken);
+        this.router.navigateByUrl('/dashboard');
 
+      },
+      err=>{
+        this.mode=1;
+      }
+    )
+
+  }
 }

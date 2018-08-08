@@ -1,6 +1,5 @@
 <div class="mainDashboardNavbar">
   <div class="skip">
-
   </div>
   <div class="container">
     <ul class="nav nav-tabs">
@@ -8,15 +7,15 @@
         <a class="nav-link active" [routerLink]="['./map']">main</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['./add']">Add New Truck</a>
+        <a class="nav-link" [routerLink]="['./profile']">profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['./del']">Delete Truck</a>
+        <a class="nav-link" [routerLink]="['./users']">Manage Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['./all']">Browse</a>
+        <a class="nav-link" [routerLink]="['./vehicules']">Browse Vehicules</a>
       </li>
     </ul>
   </div>
+  <router-outlet></router-outlet>
 </div>
-<router-outlet></router-outlet>

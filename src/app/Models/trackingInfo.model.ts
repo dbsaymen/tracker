@@ -1,5 +1,6 @@
 export class TrackingInfo {
-  public lat: string;
-  public lang:string;
+  public carSerialNumber:string;
+  public lat: number;
+  public lang:number;
   public date:string;
 }

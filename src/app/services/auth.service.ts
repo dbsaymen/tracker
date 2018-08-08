@@ -1,62 +1,56 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import * as auth0 from 'auth0-js';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
-(window as any).global = window;
 
 @Injectable()
 export class AuthService {
 
-  auth0 = new auth0.WebAuth({
-    clientID: '6IjWs0QAn8E85J4gIFyR6bq5iwE00L4w',
-    domain: 'trackingapi.auth0.com',
-    responseType: 'token id_token',
-    audience: 'https://trackingapi.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/dashboard',
-    scope: 'openid profile'
-  });
+  private host:string="http://localhost:8080";
+  private jwtToken=null;
+  private roles=[];
+  private Auth=true;
+  constructor(private http:HttpClient) {}
 
-  constructor(public router: Router) {}
+  initService(){
+    this.loadToken();
 
-
-  public login(): void {
-    this.auth0.authorize();
+    if(this.jwtToken==null)
+      this.Auth=false;
+    else
+      this.http.get(this.host+"/auth",{headers:new HttpHeaders({'Authorization':this.jwtToken})}).subscribe(resp=>{},err=>this.Auth=false);
+  }
+  getToken(){
+    if(this.jwtToken==null) this.loadToken();
+    return this.jwtToken;
+  }
+  login(user) {
+    return this.http.post(this.host+"/login",user,{observe:'response'});
+  }
+  saveToken(jwtToken){
+    localStorage.setItem('token',jwtToken);
+    this.decodeToken(jwtToken);
+    this.Auth=true;
+  }
+  decodeToken(jwtToken){
+    let jwtHelper=new JwtHelperService();
+    this.roles=jwtHelper.decodeToken(jwtToken).roles;
+  }
+  getUserName(){
+    let jwtHelper=new JwtHelperService();
+    return jwtHelper.decodeToken(this.jwtToken).sub;
+  }
+  loadToken(){
+    this.jwtToken=localStorage.getItem('token');
+  }
+  logout(){
+    this.jwtToken=null;
+    this.roles=[];
+    this.Auth=false;
+    localStorage.removeItem('token');
   }
 
-
-  public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
-        this.setSession(authResult);
-        this.router.navigate(['/map']);
-      } else if (err) {
-        this.router.navigate(['/home']);
-        console.log(err);
-      }
-    });
+  isAuthenticated():boolean{
+    return this.Auth;
   }
-  private setSession(authResult): void {
-    // Set the time that the Access Token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
-  }
-  public logout(): void {
-    // Remove tokens and expiry time from localStorage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
-    // Go back to the home route
-    this.router.navigate(['/']);
-  }
-
-  public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // Access Token's expiry time
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at') || '{}');
-    return new Date().getTime() < expiresAt;
-  }
-
 }

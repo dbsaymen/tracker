@@ -12,3 +12,42 @@ agm-map {
 .contorls{
   margin-top: 100px;
 }
+
+.LiveTrucking{
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 8px 7px #888888;
+  margin-bottom: 20px;
+}
+
+.historyTrucking{
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 8px 7px #888888;
+}
+
+#exampleFormControlSelect2{
+  height: 150px;
+}
+#exampleFormControlSelect1{
+  width: 65%;
+  margin-right: 2%;
+}
+
+.fixrow{
+  margin-left: 0px;
+}
+.addBtn , .delBtn{
+  width: 15%;
+}
+.LiveBtn{
+  margin-top: 40px;
+  margin-left: 23%;
+}
+.calendar{
+  margin-top: 10px;
+  margin-right: 25px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 10px;
+}

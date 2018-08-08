@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Component,OnInit } from '@angular/core';
+
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 
-export class AppComponent {
-  title = 'app';
-  constructor(){
-
-  };
+export class AppComponent implements OnInit {
+  constructor(private auth:AuthService){};
+  ngOnInit() {
+    this.auth.initService();
+  }
 }

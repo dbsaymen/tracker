@@ -1,4 +1,9 @@
-
+.fixtop{
+  height: 110px;
+}
+.container{
+  margin-bottom: 50px;
+}
 .card-container.card {
   max-width: 350px;
   padding: 40px 40px;
@@ -13,16 +18,11 @@
   cursor: default;
 }
 
-/*
- * Card component
- */
+
 .card {
   background-color: #F7F7F7;
-  /* just in case there no content*/
   padding: 20px 25px 30px;
   margin: 0 auto;
-
-  /* shadows and rounded borders */
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
   border-radius: 2px;

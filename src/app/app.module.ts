@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AgmCoreModule } from '@agm/core';
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { NavbarrComponent}  from "./shared/navbarr/navbarr.component";
@@ -39,13 +40,15 @@ const routes: Routes = [
   { path: 'about', component: AboutPageComponent},
   { path: 'services', component: AboutPageComponent},
   { path: '403', component: NotfoundComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'dashboard', redirectTo: 'dashboard/map', pathMatch: 'full' },
   { path: 'dashboard', component: MainDashboardNavbarComponent, canActivate:[AuthGuard],
     children: [
       { path: '', redirectTo: './map', pathMatch: 'full' },
       {path: 'map', component: MapPageComponent},
-      {path: 'add', component: MainDashboardAddComponent},
-      {path: 'del', component: MainDashboardDeleteComponent},
-      {path: 'all', component: MainDashboardbrowseComponent},
+      {path: 'profile', component: MainDashboardAddComponent},
+      {path: 'users', component: MainDashboardDeleteComponent},
+      {path: 'vehicules', component: MainDashboardbrowseComponent},
     ]
 
   },
@@ -87,8 +90,8 @@ const routes: Routes = [
     AgmDirectionModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    NgbModule.forRoot()
   ],
   providers: [
     AuthService ,

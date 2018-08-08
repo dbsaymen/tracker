@@ -1,5 +1,6 @@
 import { Component, OnInit,HostListener } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbarr',
@@ -7,38 +8,20 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./navbarr.component.css']
 })
 export class NavbarrComponent implements OnInit {
-  innerWidth=window.innerWidth;
-  sideMenuActive=false;
-  topMenuActive=false;
-  constructor(public auth: AuthService) {
-    auth.handleAuthentication();
+
+
+  constructor(public router: Router,public auth: AuthService) {
   }
 
   ngOnInit() {
-    this.onResize();
+
   }
 
-  @HostListener('window:resize',['$event'])
-  onResize(){
-    this.innerWidth=window.innerWidth;
-    this.autoToggleNavbar();
-  }
-  toggleNavbar(){
-    this.sideMenuActive=!this.sideMenuActive;
-  }
-  autoToggleNavbar(){
-    if(this.innerWidth<1005){
-      this.topMenuActive=false;
-    }
-    else{
-      this.topMenuActive=true;
-    }
-    this.sideMenuActive=false;
-  }
-  toggleSideNavbar(){
-    this.sideMenuActive=!this.sideMenuActive;
-  }
 
+  onLogout(){
+    this.router.navigateByUrl("/");
+    this.auth.logout()
+  }
 
 
 }
