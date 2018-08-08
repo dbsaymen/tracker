@@ -14,7 +14,6 @@ export class AuthService {
 
   initService(){
     this.loadToken();
-
     if(this.jwtToken==null)
       this.Auth=false;
     else
@@ -36,18 +35,31 @@ export class AuthService {
     let jwtHelper=new JwtHelperService();
     this.roles=jwtHelper.decodeToken(jwtToken).roles;
   }
+
   getUserName(){
     let jwtHelper=new JwtHelperService();
     return jwtHelper.decodeToken(this.jwtToken).sub;
   }
+
   loadToken(){
     this.jwtToken=localStorage.getItem('token');
+
   }
+
   logout(){
     this.jwtToken=null;
     this.roles=[];
     this.Auth=false;
     localStorage.removeItem('token');
+  }
+
+  hasRole(msg){
+    if(this.jwtToken)
+      this.decodeToken(this.jwtToken);
+    for (let role of this.roles){
+      if(role.authority===msg) return true;
+    }
+    return false;
   }
 
   isAuthenticated():boolean{

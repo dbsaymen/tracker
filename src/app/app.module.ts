@@ -28,11 +28,12 @@ import {AuthService } from './services/auth.service';
 import {AuthGuard} from './auth.guard';
 import { NotfoundComponent } from './shared/notfound/notfound.component';
 
-import { MainDashboardComponent } from './DashBoard/main-dashboard/main-dashboard.component';
+
 import { MainDashboardNavbarComponent } from './DashBoard/main-dashboard-navbar/main-dashboard-navbar.component';
-import { MainDashboardAddComponent } from './DashBoard/main-dashboard-add/main-dashboard-add.component';
-import { MainDashboardDeleteComponent } from './DashBoard/main-dashboard-delete/main-dashboard-delete.component';
-import { MainDashboardbrowseComponent } from './DashBoard/main-dashboardbrowse/main-dashboardbrowse.component';
+import { ProfileComponent } from './DashBoard/profile/profile.component';
+import { ManageUsersComponent } from './DashBoard/manage-users/manage-users.component';
+import { ManageVehiculesComponent } from './DashBoard/manage-vehicules/manage-vehicules.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -46,9 +47,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: './map', pathMatch: 'full' },
       {path: 'map', component: MapPageComponent},
-      {path: 'profile', component: MainDashboardAddComponent},
-      {path: 'users', component: MainDashboardDeleteComponent},
-      {path: 'vehicules', component: MainDashboardbrowseComponent},
+      {path: 'profile', component: ProfileComponent},
+      {path: 'users', component: ManageUsersComponent},
+      {path: 'vehicules', component: ManageVehiculesComponent},
     ]
 
   },
@@ -75,11 +76,11 @@ const routes: Routes = [
     MainLoginComponent,
     LoginComponent,
     NotfoundComponent,
-    MainDashboardComponent,
     MainDashboardNavbarComponent,
-    MainDashboardAddComponent,
-    MainDashboardDeleteComponent,
-    MainDashboardbrowseComponent,
+    ProfileComponent,
+    ManageUsersComponent,
+    ManageVehiculesComponent
+
   ],
   imports: [
     BrowserModule,

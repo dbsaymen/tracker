@@ -1,8 +1,6 @@
 export class User {
-  public UserName: string;
-  public Password: string;
-  constructor(UserName: string, Password: string){
-    this.UserName=UserName;
-    this.Password=Password;
-  }
+  public  firstName;
+  public  lastName;
+  public  username;
+  public allowedCars;
 }

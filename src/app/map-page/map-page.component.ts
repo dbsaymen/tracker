@@ -48,6 +48,7 @@ export class MapPageComponent implements OnInit {
   ngOnInit() {
     this.getallTrucks();
   }
+
   fxNb(nb){
     if(nb<9) return ("0"+nb);
     else return nb;

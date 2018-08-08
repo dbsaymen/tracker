@@ -10,10 +10,10 @@
         <a class="nav-link" [routerLink]="['./profile']">profile</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['./users']">Manage Users</a>
+        <a class="nav-link" [routerLink]="['./users']" *ngIf="this.auth.hasRole('ADMIN')">Manage Users</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="['./vehicules']">Browse Vehicules</a>
+        <a class="nav-link" [routerLink]="['./vehicules']" *ngIf="this.auth.hasRole('ADMIN')" >Manage Vehicules</a>
       </li>
     </ul>
   </div>

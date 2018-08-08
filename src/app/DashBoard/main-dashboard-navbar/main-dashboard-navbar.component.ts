@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-main-dashboard-navbar',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MainDashboardNavbarComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  constructor(private _router: Router,public auth:AuthService) { }
 
   ngOnInit() {
     this._router.navigate(['./dashboard/map'])
