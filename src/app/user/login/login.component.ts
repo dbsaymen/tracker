@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   }
   mode:number=0;
   ngOnInit() {
+    this.auth.logout();
   }
   onLogin(user){
     this.auth.login(user).subscribe(
@@ -20,7 +21,6 @@ export class LoginComponent implements OnInit {
         let jwtToken=resp.headers.get('Authorization');
         this.auth.saveToken(jwtToken);
         this.router.navigateByUrl('/dashboard');
-
       },
       err=>{
         this.mode=1;

@@ -3,25 +3,16 @@
     <div class="row">
     <div class="col-sm-8">
       <div class="mapDiv">
-        <agm-map [latitude]="latD" [longitude]="lngD" [zoom]="15">
+        <agm-map [latitude]="latD" [longitude]="lngD" [zoom]="10">
           <agm-polyline [strokeColor]="'#2196f3'" >
             <agm-polyline-point *ngFor="let point of FetchedInfo" [latitude]="point.lat" [longitude]="point.lang" ></agm-polyline-point>
-            <!--<agm-marker [latitude]="latD" [longitude]="lngD" > </agm-marker>-->
-            <agm-marker *ngFor="let point of LiveInfoEntity" [latitude]="point.lang" [longitude]="point.lat" [title]="point.carSerialNumber" [draggable]="true" ></agm-marker>
+            <agm-marker *ngIf="LiveInfoEntity" [latitude]="LiveInfoEntity.lang" [longitude]="LiveInfoEntity.lat" [title]="LiveInfoEntity.carSerialNumber" [draggable]="false" ></agm-marker>
           </agm-polyline>
         </agm-map>
       </div>
     </div>
 
     <div class="col-sm-4">
-      <!--<div class="form-group" >
-        <select id="inputState" class="form-control" [(ngModel)]="carID">
-          <option selected [value]="''">choose a truck:</option>
-          <option  *ngFor="let truck of trucks" [value]="truck['carSerialNumber']" >{{truck["carSerialNumber"]}} , {{truck["model"]}} , {{truck["color"]}}</option>
-        </select>
-      </div>
-      <button class="btn btn-danger contorls" (click)="clearAll()">clear</button>
-      <button class="btn btn-danger contorls" (click)="getTruckBySerialNumber()" [disabled]="carID ==''">GetTruck</button>-->
 <!--****************************************************************************************-->
       <!--Live-->
 <!--****************************************************************************************-->
@@ -37,11 +28,8 @@
               <option [value]="-1" selected>-----------</option>
               <option  *ngFor="let truck of trucks;let i = index" [value]="i" >{{truck["carSerialNumber"]}} , {{truck["model"]}} , {{truck["color"]}}</option>
             </select>
-
-            <button type="button" class="btn btn-success addBtn" (click)="pushTruck()">+</button>
-
-            <button type="button" class="btn btn-danger delBtn" (click)="pullTruck()">-</button>
-
+            <button [disabled]="inStreaming" type="button" class="btn btn-success addBtn" (click)="pushTruck()">+</button>
+            <button [disabled]="inStreaming" type="button" class="btn btn-danger delBtn" (click)="pullTruck()">-</button>
           </div>
           <button [disabled]="inStreaming" type="button" class="btn btn-primary LiveBtn" (click)="repeatConnection()">Start Live Tracking</button>
           <button [disabled]="inStreaming" *ngIf="!inStreaming" type="button" class="btn btn-danger LiveBtn" (click)="clearAll()">Clear</button>

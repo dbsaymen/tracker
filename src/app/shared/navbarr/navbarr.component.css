@@ -33,6 +33,7 @@ nav{
 
 .menu{
   margin:auto;
+  flex-grow: initial;
 }
 
 .menu ul li a{

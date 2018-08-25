@@ -1,4 +1,4 @@
-<div class="side-bar" [ngClass]="{'showSideBar':showBar}">
+<div class="side-bar showSideBar">
 
   <div class="top">
     <div class="user">
@@ -24,11 +24,11 @@
   <div class="menu">
     <ul>
       <li class="home"><a [routerLink]="['/home']">HOME</a></li>
-      <li class="about"><a [routerLink]="['/map']" >ABOUT</a></li>
+      <li class="about"><a [routerLink]="['/about']" >ABOUT</a></li>
       <li class="service"><a [routerLink]="['/service']">SERVICES</a></li>
       <li class="gallery"><a [routerLink]="['/Gallery']">GALLERY</a></li>
       <li class="contacts"><a [routerLink]="['/contacts']">CONTACTS</a></li>
-      <li class="login"><a [routerLink]="['/Login']">Login</a></li>
+      <li class="login"><a [routerLink]="['/login']">Login</a></li>
     </ul>
   </div>
 </div>

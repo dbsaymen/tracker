@@ -1,8 +1,17 @@
+.main{
+  background-image: url("../../../assets/traffic.jpg");
+  background-attachment: scroll;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
 .fixtop{
-  height: 110px;
+  height: 150px;
 }
 .container{
-  margin-bottom: 50px;
+  height: 600px;
+
 }
 .card-container.card {
   max-width: 350px;

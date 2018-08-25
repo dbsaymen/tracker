@@ -1,3 +1,15 @@
-<p>
-  manage-vehicules works!
-</p>
+<div class="main">
+  <div class="container">
+    <div class="newCar">
+      <form #f="ngForm" >
+        <label >Model:</label>
+        <input ngModel="" name="model" type="text" class="form-control"  >
+        <label >Color :</label>
+        <input ngModel="" name="color" type="text" class="form-control"  >
+        <label >Serial Number :</label>
+        <input ngModel="" name="carSerialNumber" type="text" class="form-control"  >
+        <button type="submit" [disabled]="!f.valid" class="btn btn-primary">add new vehicle</button>
+      </form>
+    </div>
+  </div>
+</div>

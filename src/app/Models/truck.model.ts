@@ -1,5 +1,4 @@
 
-import {TrackingInfo} from './trackingInfo.model';
 
 export class truck {
   public model: string;

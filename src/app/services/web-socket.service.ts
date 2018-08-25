@@ -10,7 +10,7 @@ export class WebSocketService {
   constructor() { }
   name: string;
   ws: any;
-  LiveInfoEntity:TrackingInfo[]=[];
+  LiveInfoEntity:TrackingInfo=new TrackingInfo();
   Connected=false;
   isConnected(){
     return this.Connected;
@@ -20,23 +20,20 @@ export class WebSocketService {
   }
   connect(username:string) {
     let LiveInfo;
-    let socket = new WebSocket("ws://localhost:8080/vehicle");
+    let socket = new WebSocket("ws://arcane-mountain-40535.herokuapp.com/vehicle");
+
     this.ws = Stomp.over(socket);
     this.ws
     this.Connected=true;
     let that = this;
     this.ws.connect({}, function(frame) {
       that.ws.subscribe("/topic/reply/"+username, message => {
-        LiveInfo=message.body.split(",");
-        for(let v of LiveInfo){
-          let inf=v.split("*");
-          let entity:TrackingInfo= new TrackingInfo();
-          entity.carSerialNumber=inf[0];
-          entity.lat=+inf[1];
-          entity.lang=+inf[2]
-          that.LiveInfoEntity.push(entity);
-        }
-        that.LiveInfoEntity.pop();
+        LiveInfo=message.body;
+        let inf=LiveInfo.split("*");
+        that.LiveInfoEntity=new TrackingInfo();
+        that.LiveInfoEntity.carSerialNumber=inf[0];
+        that.LiveInfoEntity.lat=+inf[1];
+        that.LiveInfoEntity.lang=+inf[2];
       });
 
     }, function(error) {
@@ -56,10 +53,8 @@ export class WebSocketService {
     if(LiveTrucks.length){
       let LiveInfoEntity:TrackingInfo[]=[];
       let Serials:string="";
-      console.log("Seriels:"+Serials);
       for(let truck of LiveTrucks)
         Serials+=truck.carSerialNumber+"/";
-      console.log(Serials);
       this.ws.send("/app/message/"+userName, {},Serials );
     }
   }

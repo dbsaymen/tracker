@@ -23,7 +23,7 @@ export class MapPageComponent implements OnInit {
   trucks: truck[];
   trucksHistory: truck[];
   LiveTrucks:truck[]=[];
-  LiveInfoEntity:TrackingInfo[]=[];
+  LiveInfoEntity:TrackingInfo=null;
   stop=false;
 
 
@@ -54,9 +54,6 @@ export class MapPageComponent implements OnInit {
     else return nb;
   }
   pullTruck(){
-    console.log(this.LiveTrucks);
-    console.log(this.trucks);
-    console.log(this.IndexSelected);
     if(this.IndexSelected!=-1) {
       this.trucks.push(this.LiveTrucks[this.IndexSelected]);
       this.LiveTrucks.splice(this.IndexSelected, 1);
@@ -74,7 +71,7 @@ export class MapPageComponent implements OnInit {
   }
   clearAll(){
     this.FetchedInfo=[];
-    this.LiveInfoEntity=[];
+    this.LiveInfoEntity=null;
   }
 
   getallTrucks(){
@@ -126,6 +123,7 @@ export class MapPageComponent implements OnInit {
               this.websocket.sendMsg(this.LiveTrucks, username);
               this.clearAll();
               this.LiveInfoEntity = this.websocket.getLiveInfoEntity();
+              console.log(this.LiveInfoEntity);
             }
           }
         );

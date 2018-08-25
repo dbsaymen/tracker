@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./to-top-btn.component.css']
 })
 export class ToTopBtnComponent implements OnInit {
-  scroll(elelem) {
-    elelem.scrollIntoView();
+  scroll() {
+    window.scrollTo(0, 0);
   }
   constructor() { }
 

@@ -9,7 +9,7 @@ import {TrackingInfo} from '../Models/trackingInfo.model';
   providedIn: 'root'
 })
 export class GetAllTrucksService {
-  url="http://localhost:8080";
+  url="https://arcane-mountain-40535.herokuapp.com";
   constructor(private http: HttpClient,private auth:AuthService) { }
 
   getAllTrucks(): Observable<truck[]>{

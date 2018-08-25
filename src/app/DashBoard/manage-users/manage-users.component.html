@@ -1,3 +1,46 @@
-<p>
-  manage-users works!
-</p>
+<div class="main">
+  <div class="container">
+    <div class="newUser">
+      <form #f="ngForm" >
+        <label >firstName:</label>
+        <input ngModel="" name="firstName" type="text" class="form-control"  >
+        <label >lastName :</label>
+        <input ngModel="" name="lastName" type="text" class="form-control"  >
+        <label >username :</label>
+        <input ngModel="" name="username" type="text" class="form-control"  >
+
+        <div class="alert alert-danger" role="alert" *ngIf="false">
+          Password Not Match
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="false">
+          Use a minimum password length of 8 or more characters
+        </div>
+        <label >Password :</label>
+        <input  ngModel="" name="newPwd" type="password" class="form-control" name="password">
+        <label >Re-password :</label>
+        <input  ngModel="" name="rePwd" type="password" class="form-control" name="repassword">
+        <div class="LiveTrucking">
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Allowed vehicules to track:</label>
+            <select multiple  class="form-control" id="exampleFormControlSelect2"  >
+            </select>
+            <label for="exampleFormControlSelect1">Choose a Truck:</label>
+            <div class="row fixrow">
+              <div class="col-sm-9">
+                <select class="form-control" id="exampleFormControlSelect1" >
+                  <option [value]="-1" selected>-----------</option>
+                  <option [value]="'all'" selected>All</option>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <button  type="button" class="btn btn-success addBtn " >+</button>
+                <button  type="button" class="btn btn-danger delBtn " >-</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled]="!f.valid" class="btn btn-primary">add new User</button>
+      </form>
+    </div>
+  </div>
+</div>

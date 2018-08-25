@@ -1,19 +1,21 @@
-<div class="fixtop"></div>
-<div class="container">
+<div class="main">
+  <div class="fixtop"></div>
+  <div class="container">
 
-  <div class="card card-container">
-    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-    <p id="profile-name" class="profile-name-card">LogIn</p>
-    <div class="alert alert-danger" role="alert" *ngIf="mode">
-      Wrong Password or Username, Please try agin or contact the admin
+    <div class="card card-container">
+      <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+      <p id="profile-name" class="profile-name-card">Welcome!</p>
+      <div class="alert alert-danger" role="alert" *ngIf="mode">
+        Wrong Password or Username, Please try agin or contact the admin
+      </div>
+
+      <form class="form-signin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
+        <span id="reauth-email" class="reauth-email"></span>
+        <input ngModel="" type="text" id="inputUserName" class="form-control" placeholder="UserName" required autofocus #UserName ngModel name="username" >
+        <input ngModel="" type="password" id="inputPassword" class="form-control" placeholder="Password" required #Passwor ngModel name="password">
+        <button [disabled]="!loginForm.valid"  class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+      </form>
+
     </div>
-
-    <form class="form-signin" #loginForm="ngForm" (ngSubmit)="onLogin(loginForm.value)">
-      <span id="reauth-email" class="reauth-email"></span>
-      <input ngModel="" type="text" id="inputUserName" class="form-control" placeholder="UserName" required autofocus #UserName ngModel name="username" >
-      <input ngModel="" type="password" id="inputPassword" class="form-control" placeholder="Password" required #Passwor ngModel name="password">
-      <button [disabled]="!loginForm.valid"  class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-    </form>
-
   </div>
 </div>

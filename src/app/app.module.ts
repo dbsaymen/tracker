@@ -35,6 +35,7 @@ import { ManageUsersComponent } from './DashBoard/manage-users/manage-users.comp
 import { ManageVehiculesComponent } from './DashBoard/manage-vehicules/manage-vehicules.component';
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: MainPageComponent},
@@ -94,10 +95,11 @@ const routes: Routes = [
     HttpClientModule,
     NgbModule.forRoot()
   ],
+
   providers: [
     AuthService ,
     HttpClientModule,
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })
