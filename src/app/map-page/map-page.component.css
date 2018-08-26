@@ -28,14 +28,21 @@ agm-map {
 
 #exampleFormControlSelect2{
   height: 150px;
+
 }
 #exampleFormControlSelect1{
   width: 65%;
   margin-right: 2%;
+  margin-left: 10px;
 }
 
 .fixrow{
-  margin-left: 0px;
+  position: relative;
+  display: block;
+  margin: auto;
+  width: fit-content;
+  padding: 30px;
+
 }
 .addBtn , .delBtn{
   width: 15%;
@@ -45,9 +52,23 @@ agm-map {
   margin-left: 23%;
 }
 .calendar{
+  display: inline-block;
   margin-top: 10px;
   margin-right: 25px;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
+  box-shadow: 0px 0px 8px 7px #888888;
   padding: 10px;
+}
+/*ToggleBtn*/
+.ToggleBtn{
+  position: relative;
+  padding: 15px;
+
+}
+.ToggleBtn button{
+  display: block;
+  width: 45%;
+  position: relative;
+  margin: auto;
 }

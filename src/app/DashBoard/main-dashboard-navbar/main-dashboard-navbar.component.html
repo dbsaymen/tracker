@@ -2,6 +2,7 @@
   <div class="skip">
   </div>
   <div class="container">
+
     <ul class="nav nav-tabs">
       <li class="nav-item">
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/map']">main</a>
@@ -16,6 +17,7 @@
         <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard/users']" *ngIf="this.auth.hasRole('ADMIN')">Manage Users</a>
       </li>
     </ul>
+
   </div>
   <router-outlet></router-outlet>
 </div>

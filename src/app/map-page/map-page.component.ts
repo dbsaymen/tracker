@@ -18,7 +18,15 @@ export class MapPageComponent implements OnInit {
 
   latD: number = 36.45102486;
   lngD: number = 10.73452199;
+  ZOOM_IN=18;
+  ZOOM_OUT=5;
+  zoomD:number=this.ZOOM_OUT;
+  markStart="../../assets/icones/MarkStart.png";
+  markEnd="../../assets/icones/MarkEnd.png";
+
   carID='';
+  date:any;
+  DisplaySFIcon:boolean=false;
 
   trucks: truck[];
   trucksHistory: truck[];
@@ -26,10 +34,10 @@ export class MapPageComponent implements OnInit {
   LiveInfoEntity:TrackingInfo=null;
   stop=false;
 
-
   LiveSelectedTruck:number=-1;
   IndexSelected:number=-1;
-  FetchedInfo;
+
+  FetchedInfo:any=[];
   inStreaming=false;
 
 
@@ -39,6 +47,7 @@ export class MapPageComponent implements OnInit {
   toDate={year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
   toTime={hour: now.getHours(), minute: now.getMinutes()};
   tomeridian= true;
+  toggle: boolean=true;
 
   constructor(private getAllTrucksService:GetAllTrucksService,
               private auth:AuthService,
@@ -72,6 +81,8 @@ export class MapPageComponent implements OnInit {
   clearAll(){
     this.FetchedInfo=[];
     this.LiveInfoEntity=null;
+    this.DisplaySFIcon=false
+    this.zoomD=this.ZOOM_OUT;
   }
 
   getallTrucks(){
@@ -86,12 +97,17 @@ export class MapPageComponent implements OnInit {
       let fromD=this.fromDate.year+"-"+this.fxNb(this.fromDate.month)+"-"+this.fxNb(this.fromDate.day)+"T"+this.fxNb(this.fromTime.hour)+":"+this.fxNb(this.fromTime.minute)+"Z";
       let toD=this.fromDate.year+"-"+this.fxNb(this.toDate.month)+"-"+this.fxNb(this.toDate.day)+"T"+this.fxNb(this.toTime.hour)+":"+this.fxNb(this.toTime.minute)+"Z";
       Info=this.carID+"/"+fromD+"/"+toD;
-      this.getAllTrucksService.getTrackingDataBySerialNumberAndTimeRange(Info).subscribe(data=>this.FetchedInfo=data,err=>alert("Error while fetching Data! Please Contact the WebMaster aymen.bensalem@enis.tn"), ()=>{if(this.FetchedInfo.length==0) alert("No data exist between these two dates! "+fromD+ " --- "+toD)});
+      this.getAllTrucksService.getTrackingDataBySerialNumberAndTimeRange(Info).subscribe(
+        data=>{this.FetchedInfo=data; if(this.FetchedInfo.length) {this.zoomD=this.ZOOM_IN; this.lngD=this.FetchedInfo[0].lang;this.latD=this.FetchedInfo[0].lat;}},
+          err=>alert("Error while fetching Data! Please Contact the WebMaster aymen.bensalem@enis.tn"),
+        ()=>{if(this.FetchedInfo.length==0) alert("No data exist between these two dates! "+fromD+ " --- "+toD);
+      });
     }
     else {
       alert("Please Choose a Vehicle before start Trucking!");
     }
   }
+
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
@@ -123,7 +139,11 @@ export class MapPageComponent implements OnInit {
               this.websocket.sendMsg(this.LiveTrucks, username);
               this.clearAll();
               this.LiveInfoEntity = this.websocket.getLiveInfoEntity();
-              console.log(this.LiveInfoEntity);
+              if(this.LiveInfoEntity){
+                this.latD=this.LiveInfoEntity.lang;
+                this.lngD=this.LiveInfoEntity.lat;
+                this.zoomD=this.ZOOM_IN;
+              }
             }
           }
         );
@@ -132,4 +152,7 @@ export class MapPageComponent implements OnInit {
       alert("Please Choose a Vehicle before start Trucking!")
   }
 
+  toggleBtn() {
+    this.toggle=!this.toggle;
+  }
 }

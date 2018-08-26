@@ -1,29 +1,42 @@
 <div class="main">
-  <div class="containers">
-    <div class="row">
-    <div class="col-sm-8">
-      <div class="mapDiv">
-        <agm-map [latitude]="latD" [longitude]="lngD" [zoom]="10">
-          <agm-polyline [strokeColor]="'#2196f3'" >
-            <agm-polyline-point *ngFor="let point of FetchedInfo" [latitude]="point.lat" [longitude]="point.lang" ></agm-polyline-point>
-            <agm-marker *ngIf="LiveInfoEntity" [latitude]="LiveInfoEntity.lang" [longitude]="LiveInfoEntity.lat" [title]="LiveInfoEntity.carSerialNumber" [draggable]="false" ></agm-marker>
-          </agm-polyline>
-        </agm-map>
+  <div class="container">
+    <div class=" row">
+      <div class="col-sm-12">
+        <div class="mapDiv">
+          <agm-map [latitude]="latD" [longitude]="lngD" [zoom]="zoomD">
+            <agm-polyline [strokeColor]="'#2196f3'" >
+              <agm-polyline-point *ngFor="let point of FetchedInfo" [latitude]="point.lat" [longitude]="point.lang"  ></agm-polyline-point>
+              <agm-marker *ngIf="FetchedInfo.length!=0" [latitude]="FetchedInfo[0].lat" [longitude]="FetchedInfo[0].lang" [title]="FetchedInfo[0].carSerialNumber+'\nStartPosition'" [draggable]="false" [iconUrl]="markStart" ></agm-marker>
+              <agm-marker *ngIf="FetchedInfo.length!=0" [latitude]="FetchedInfo[FetchedInfo.length-1].lat" [longitude]="FetchedInfo[FetchedInfo.length-1].lang" [title]="FetchedInfo[FetchedInfo.length-1].carSerialNumber+'\nEndPosition'" [draggable]="false" [iconUrl]="markEnd" ></agm-marker>
+              <agm-marker *ngIf="LiveInfoEntity" [latitude]="LiveInfoEntity.lang" [longitude]="LiveInfoEntity.lat" [title]="LiveInfoEntity.carSerialNumber" [draggable]="false" [iconUrl]="markEnd" ></agm-marker>
+            </agm-polyline>
+          </agm-map>
+        </div>
       </div>
-    </div>
+      </div>
 
-    <div class="col-sm-4">
+
+<!--****************************************************************************************-->
+<!--Togle Btn-->
+<!--****************************************************************************************-->
+      <div class="ToggleBtn" (click)="toggleBtn()">
+        <button type="button" class="btn btn-primary" *ngIf="toggle">Live View</button>
+        <button type="button" class="btn btn-primary" *ngIf="!toggle">History View</button>
+      </div>
+
 <!--****************************************************************************************-->
       <!--Live-->
 <!--****************************************************************************************-->
-      <div class="LiveTrucking">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="LiveTrucking" *ngIf="toggle">
         <div class="form-group">
           <label for="exampleFormControlSelect2">Selected Trucks:</label>
           <select multiple  class="form-control" id="exampleFormControlSelect2" [(ngModel)]="IndexSelected" >
             <option  *ngFor="let truck of LiveTrucks;let i = index" [value]="i" >{{truck["carSerialNumber"]}} , {{truck["model"]}} , {{truck["color"]}}</option>
           </select>
           <label for="exampleFormControlSelect1">Choose a Truck:</label>
-          <div class="row fixrow">
+          <div class="row">
             <select class="form-control" id="exampleFormControlSelect1" [(ngModel)]="LiveSelectedTruck">
               <option [value]="-1" selected>-----------</option>
               <option  *ngFor="let truck of trucks;let i = index" [value]="i" >{{truck["carSerialNumber"]}} , {{truck["model"]}} , {{truck["color"]}}</option>
@@ -36,10 +49,11 @@
           <button *ngIf="inStreaming" type="button" class="btn btn-danger LiveBtn" (click)="stopStreaming()">Stop</button>
         </div>
       </div>
+
 <!--****************************************************************************************-->
       <!--History-->
 <!--****************************************************************************************-->
-      <div class="historyTrucking">
+      <div class="historyTrucking" *ngIf="!toggle" >
         <div class="SelectTruck">
           <label for="exampleFormControlSelect3">Show History:</label>
           <select class="form-control" id="exampleFormControlSelect3" [(ngModel)]="carID">
@@ -47,15 +61,15 @@
             <option  *ngFor="let truck of trucksHistory" [value]="truck['carSerialNumber']" >{{truck["carSerialNumber"]}} , {{truck["model"]}} , {{truck["color"]}}</option>
           </select>
         </div>
-        <div class="row fixrow">
+        <div class="fixrow">
           <div class="calendar">
-            <h5>From:</h5>
+            <h5>From :</h5>
             <ngb-datepicker #dp [(ngModel)]="fromDate" (navigate)="date = $event.next"></ngb-datepicker>
             <ngb-timepicker [(ngModel)]="fromTime" [meridian]="frommeridian"></ngb-timepicker>
           </div>
 
           <div class="calendar">
-            <h5>To:</h5>
+            <h5>To :</h5>
             <ngb-datepicker #dp [(ngModel)]="toDate" (navigate)="date = $event.next"></ngb-datepicker>
             <ngb-timepicker [(ngModel)]="toTime" [meridian]="tomeridian"></ngb-timepicker>
           </div>
@@ -63,7 +77,7 @@
         <button [disabled]="inStreaming" type="button" class="btn btn-primary LiveBtn" (click)="getTrackingDataBySerialNumberAndTimeRange()">Start History Tracking</button>
         <button [disabled]="inStreaming" type="button" class="btn btn-danger LiveBtn" (click)="clearAll()">Clear</button>
       </div>
-      <p></p>
+
     </div>
   </div>
   </div>
